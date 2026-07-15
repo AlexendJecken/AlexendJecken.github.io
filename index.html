@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANON TOKYO - Official Fan Boutique</title>
+    <!-- 載入 Tailwind CSS 用於現代化極速切版 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Google Fonts (Inter 用於潮流英文字, Noto Sans TC 用於精緻中文字, Cinzel 用於時尚英文字型) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- 載入 Font Awesome 圖標庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#ffb7c5',    /* 愛音代表粉色 */
+                            hot: '#e06d8c',     /* 時尚焦點深粉 */
+                            charcoal: '#121212',/* 極黑 */
+                            slate: '#1a1a1a',   /* 深炭灰 */
+                            gold: '#d4af37'     /* 精品金 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                        serif: ['Cinzel', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 隱藏滾動條但保留滾動功能（用於橫向滾動區） */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* 橫向拖曳滑鼠狀態 */
+        .drag-to-scroll {
+            cursor: grab;
+            user-select: none;
+        }
+        .drag-to-scroll:active {
+            cursor: grabbing;
+        }
+
+        /* 漸層文字效果 */
+        .text-gradient-pink {
+            background: linear-gradient(135deg, #ffb7c5 0%, #e06d8c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 呼吸發光效果 */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 183, 197, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(224, 109, 140, 0.8); }
+        }
+        .glow-btn {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-brand-charcoal text-slate-100 font-sans selection:bg-brand-hot selection:text-white">
+
+    <!-- 頂部導覽列 -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-brand-charcoal/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
+        <a href="#" class="font-serif text-2xl font-black tracking-widest text-gradient-pink hover:opacity-80 transition duration-300">ANON TOKYO</a>
+        <nav class="hidden md:flex space-x-8 text-sm tracking-wider uppercase font-semibold">
+            <a href="#about" class="text-slate-300 hover:text-brand-pink transition">品牌理念</a>
+            <a href="#staff" class="text-slate-300 hover:text-brand-pink transition">精選店員</a>
+            <a href="#gallery" class="text-slate-300 hover:text-brand-pink transition">春季著裝</a>
+            <a href="#youtube" class="text-slate-300 hover:text-brand-pink transition">演出企劃</a>
+        </nav>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleBox()" class="text-xs bg-slate-800 hover:bg-slate-700 text-brand-pink border border-brand-pink/30 px-3 py-1.5 rounded-full flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-wrench"></i> <span>開發者工具箱</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 英雄開場區區塊 (Hero Section) -->
+    <section id="hero" class="relative min-h-screen flex flex-col justify-center items-center px-6 pt-24 text-center overflow-hidden">
+        <!-- 背景霓虹光暈 -->
+        <div class="absolute w-[300px] h-[300px] rounded-full bg-brand-pink/10 blur-[120px] top-1/4 left-1/4 animate-pulse"></div>
+        <div class="absolute w-[400px] h-[400px] rounded-full bg-brand-hot/10 blur-[150px] bottom-1/4 right-1/4 animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <div class="z-10 max-w-4xl space-y-6">
+            <span class="text-brand-pink font-semibold tracking-[0.25em] text-sm uppercase block">Where Indie Rock Meets Tokyo High Fashion</span>
+            <h1 class="font-serif text-5xl md:text-8xl font-black tracking-tight leading-none text-white select-none">
+                ANON <span class="text-gradient-pink">TOKYO</span>
+            </h1>
+            <p class="text-slate-400 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+                「在夢想的交叉口，我們換上閃耀的衣裝。」<br>
+                由千早愛音主理的時尚精品空間，融合獨立樂團精神與東京街頭質感。
+            </p>
+            <div class="pt-6 flex flex-wrap justify-center gap-4">
+                <a href="#gallery" class="glow-btn bg-gradient-to-r from-brand-pink to-brand-hot hover:from-brand-hot hover:to-brand-pink text-brand-charcoal font-black px-8 py-4 rounded-full shadow-lg hover:scale-105 transition duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-shirt"></i> 欣賞春季衣裝
+                </a>
+                <a href="#staff" class="border border-white/20 hover:border-brand-pink/50 bg-white/5 text-white px-8 py-4 rounded-full hover:bg-white/10 transition duration-300">
+                    認識店員
+                </a>
+            </div>
+        </div>
+
+        <!-- 滾動引導 -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 flex flex-col items-center gap-2 animate-bounce">
+            <span class="text-xs uppercase tracking-widest">向下滾動</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- 品牌理念區 (Philosophy Section) -->
+    <section id="about" class="py-24 px-6 border-t border-white/5 bg-brand-slate">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <div class="text-center space-y-3">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold">品牌理念</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-brand-pink to-brand-hot mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pt-6">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-brand-pink">迷茫，也是一種時尚態度。</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm md:text-base">
+                        ANON TOKYO 成立的初衷，源於我們拒絕被輕易定義。就像我們彈奏的樂音，有時躁動、有時迷惘，但絕不虛假。我們希望為每一位正在追尋自我歸屬的「同好」提供一個避風港。在這裡，你可以是店員、可以是聽眾、更可以是一場時尚秀的主角。
+                    </p>
+                </div>
+                <div class="p-8 bg-brand-charcoal/50 rounded-2xl border border-white/10 space-y-4">
+                    <div class="flex items-center gap-3 text-brand-pink">
+                        <i class="fa-solid fa-quote-left text-3xl"></i>
+                        <span class="font-bold">店長 Chihaya Anon 留言：</span>
+                    </div>
+                    <p class="italic text-slate-400 text-sm">
+                        「哈囉！歡迎光臨 ANON TOKYO！不覺得今天的穿搭跟這把吉他超配的嗎？不管是對衣服有研究、想聊聊音樂，還是單純來看看我們，都超級歡迎喔！讓我們一起成為最耀眼的存在吧！🌟」
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 職員介紹區塊 - 橫向滑動 (Staff Section - Horizontal Scroll) -->
+    <section id="staff" class="py-24 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 mb-8 flex justify-between items-end">
+            <div class="space-y-3">
+                <span class="text-brand-pink text-xs font-bold uppercase tracking-widest block">Our Team</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold">精品店員介紹</h2>
+                <p class="text-slate-400 text-sm">【提示】請使用滑鼠滑動、滾輪 Shift+滾動、或直接左右拖曳卡片進行瀏覽；點擊照片可放大檢視</p>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <button onclick="scrollLeftArea('staff-scroll')" aria-label="向左捲動" class="w-10 h-10 rounded-full border border-white/10 hover:border-brand-pink text-slate-400 hover:text-brand-pink bg-white/5 transition flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollRightArea('staff-scroll')" aria-label="向右捲動" class="w-10 h-10 rounded-full border border-white/10 hover:border-brand-pink text-slate-400 hover:text-brand-pink bg-white/5 transition flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 橫向拖曳滑動區 -->
+        <div id="staff-scroll" class="drag-to-scroll flex gap-6 overflow-x-auto no-scrollbar py-6 px-[10vw] scroll-smooth">
+            
+            <!-- 店員 1: 千早愛音 -->
+            <div class="flex-shrink-0 w-80 bg-brand-slate rounded-2xl border border-white/10 p-6 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/50 hover:scale-[1.02] hover:shadow-2xl">
+                <div>
+                    <!-- 智慧防破圖圖片容器 (當沒圖片時自動顯示美觀SVG)，點擊可放大 -->
+                    <div onclick="openLightbox('Anon Chihaya', '千早愛音', '「對流行資訊具有超群直覺！負責策劃全店風格與公關宣傳。性格活潑外向，即使面臨危機也總是全力以赴。」', '店員/anon.jpg', '#ffb7c5')" class="relative w-full aspect-[3/4] bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none cursor-pointer group">
+                        <!-- SVG 預設圖標 -->
+                        <svg class="absolute w-24 h-24 text-brand-pink/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M50 20 L50 80 M20 50 L80 50" stroke-linecap="round"/>
+                            <circle cx="50" cy="50" r="30" />
+                            <path d="M35 35 Q50 65 65 35" stroke-linecap="round"/>
+                            <!-- 簡易吉他樣式 -->
+                            <rect x="47" y="25" width="6" height="35" rx="3" fill="currentColor" fill-opacity="0.3"/>
+                            <circle cx="50" cy="65" r="10" fill="currentColor" fill-opacity="0.5"/>
+                        </svg>
+                        <!-- 實體圖片加載 (只要上傳圖片即自動顯示) -->
+                        <img src="店員/anon.jpg" alt="千早愛音" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                            <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大檢視</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-white">千早愛音</h3>
+                        <span class="bg-brand-pink/20 text-brand-pink text-xs font-semibold px-2.5 py-1 rounded-full">主理人 / 店長</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Anon Chihaya • 負責人</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        「對流行資訊具有超群直覺！負責策劃全店風格與公關宣傳。性格活潑外向，即使面臨危機也總是全力以赴。」
+                    </p>
+                </div>
+                <div class="pt-6 border-t border-white/5 mt-6 flex justify-between items-center text-xs text-brand-pink font-semibold">
+                    <span>🎸 負責樂器：主音吉他手</span>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+
+            <!-- 店員 2: 高松燈 -->
+            <div class="flex-shrink-0 w-80 bg-brand-slate rounded-2xl border border-white/10 p-6 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/50 hover:scale-[1.02] hover:shadow-2xl">
+                <div>
+                    <div onclick="openLightbox('Tomori Takamatsu', '高松燈', '「店裡的背景故事與概念小卡皆出自阿燈筆下。平常喜歡在角落靜靜收集落葉與OK蹦，總能想出觸動靈魂的詞句。」', '店員/tomori.jpg', '#7dd3fc')" class="relative w-full aspect-[3/4] bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none cursor-pointer group">
+                        <svg class="absolute w-24 h-24 text-sky-300/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <!-- 筆記本與OK蹦、落葉/石頭 -->
+                            <rect x="30" y="25" width="40" height="50" rx="4"/>
+                            <line x1="35" y1="35" x2="65" y2="35"/>
+                            <line x1="35" y1="45" x2="55" y2="45"/>
+                            <circle cx="50" cy="62" r="6" fill="currentColor" fill-opacity="0.4"/>
+                        </svg>
+                        <img src="店員/tomori.jpg" alt="高松燈" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                            <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大檢視</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-white">高松燈</h3>
+                        <span class="bg-sky-500/20 text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">文案與陳列協調</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Tomori Takamatsu • 文案師</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        「店裡的背景故事與概念小卡皆出自阿燈筆下。平常喜歡在角落靜靜收集落葉與OK蹦，總能想出觸動靈魂的詞句。」
+                    </p>
+                </div>
+                <div class="pt-6 border-t border-white/5 mt-6 flex justify-between items-center text-xs text-sky-300 font-semibold">
+                    <span>🎤 負責樂器：主唱</span>
+                    <i class="fa-solid fa-feather"></i>
+                </div>
+            </div>
+
+            <!-- 店員 3: 長崎爽世 -->
+            <div class="flex-shrink-0 w-80 bg-brand-slate rounded-2xl border border-white/10 p-6 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/50 hover:scale-[1.02] hover:shadow-2xl">
+                <div>
+                    <div onclick="openLightbox('Soyo Nagasaki', '長崎爽世', '「負責店內的尊榮茶水招待與高難度客戶應對。舉手投足散發千金大小姐的氣息，但偶爾也會展露出沉重的一面。」', '店員/soyo.jpg', '#fcd34d')" class="relative w-full aspect-[3/4] bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none cursor-pointer group">
+                        <svg class="absolute w-24 h-24 text-amber-300/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <!-- 茶杯與優雅首飾 -->
+                            <path d="M30 40 C30 60, 70 60, 70 40 Z" fill="currentColor" fill-opacity="0.3"/>
+                            <path d="M70 45 C78 45, 78 55, 70 55" stroke-linecap="round"/>
+                            <line x1="25" y1="62" x2="75" y2="62"/>
+                        </svg>
+                        <img src="店員/soyo.jpg" alt="長崎爽世" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                            <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大檢視</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-white">長崎爽世</h3>
+                        <span class="bg-amber-500/20 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-full">VIP 貴賓關係</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Soyo Nagasaki • 公關總監</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        「負責店內的尊榮茶水招待與高難度客戶應對。舉手投足散發千金大小姐的氣息，但偶爾也會展露出沉重的一面。」
+                    </p>
+                </div>
+                <div class="pt-6 border-t border-white/5 mt-6 flex justify-between items-center text-xs text-amber-300 font-semibold">
+                    <span>🎸 負責樂器：貝斯手</span>
+                    <i class="fa-solid fa-mug-hot"></i>
+                </div>
+            </div>
+
+            <!-- 店員 4: 椎名立希 -->
+            <div class="flex-shrink-0 w-80 bg-brand-slate rounded-2xl border border-white/10 p-6 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/50 hover:scale-[1.02] hover:shadow-2xl">
+                <div>
+                    <div onclick="openLightbox('Taki Shiina', '椎名立希', '「負責控管店內預算與行政效率。雖然平常看起來表情嚴肅且口氣冷酷，但其實是個最認真守護大家、刀子嘴豆腐心的好夥伴。」', '店員/taki.jpg', '#c4b5fd')" class="relative w-full aspect-[3/4] bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none cursor-pointer group">
+                        <svg class="absolute w-24 h-24 text-purple-300/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <!-- 鼓面與咖啡杯 -->
+                            <circle cx="50" cy="45" r="22"/>
+                            <line x1="30" y1="30" x2="70" y2="60"/>
+                            <line x1="70" y1="30" x2="30" y2="60"/>
+                            <rect x="42" y="70" width="16" height="12" rx="2" fill="currentColor" fill-opacity="0.3"/>
+                        </svg>
+                        <img src="店員/taki.jpg" alt="椎名立希" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                            <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大檢視</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-white">椎名立希</h3>
+                        <span class="bg-purple-500/20 text-purple-300 text-xs font-semibold px-2.5 py-1 rounded-full">營運與收銀管理</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Taki Shiina • 財務主管</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        「負責控管店內預算與行政效率。雖然平常看起來表情嚴肅且口氣冷酷，但其實是個最認真守護大家、刀子嘴豆腐心的好夥伴。」
+                    </p>
+                </div>
+                <div class="pt-6 border-t border-white/5 mt-6 flex justify-between items-center text-xs text-purple-300 font-semibold">
+                    <span>🥁 負責樂器：鼓手</span>
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+            </div>
+
+            <!-- 店員 5: 要樂奈 -->
+            <div class="flex-shrink-0 w-80 bg-brand-slate rounded-2xl border border-white/10 p-6 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/50 hover:scale-[1.02] hover:shadow-2xl">
+                <div>
+                    <div onclick="openLightbox('Raana Kaname', '要樂奈', '「神出鬼沒的野貓天才吉他手。只要店內點餐準備好特製抹茶冰淇淋，她就會奇蹟似地現身，並彈出令人震撼的吉他旋律。」', '店員/raana.jpg', '#6ee7b7')" class="relative w-full aspect-[3/4] bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none cursor-pointer group">
+                        <svg class="absolute w-24 h-24 text-emerald-300/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                            <!-- 野貓貓耳與抹茶冰淇淋 -->
+                            <path d="M25 50 Q50 20 75 50 Z" fill="currentColor" fill-opacity="0.3"/>
+                            <path d="M25 45 L15 25 L35 35 Z M75 45 L85 25 L65 35 Z"/>
+                            <circle cx="50" cy="65" r="12" fill="currentColor" fill-opacity="0.5"/>
+                        </svg>
+                        <img src="店員/raana.jpg" alt="要樂奈" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                            <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大檢視</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-white">要樂奈</h3>
+                        <span class="bg-emerald-500/20 text-emerald-300 text-xs font-semibold px-2.5 py-1 rounded-full">自由靈魂 / 抹茶顧問</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Raana Kaname • 貓型顧問</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        「神出鬼沒的野貓天才吉他手。只要店內點餐準備好特製抹茶冰淇淋，她就會奇蹟似地現身，並彈出令人震撼的吉他旋律。」
+                    </p>
+                </div>
+                <div class="pt-6 border-t border-white/5 mt-6 flex justify-between items-center text-xs text-emerald-300 font-semibold">
+                    <span>🎸 負責樂器：領奏吉他手</span>
+                    <i class="fa-solid fa-cat"></i>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 衣裝圖庫欣賞區塊 - 橫向滑動 (Closet Gallery Section - Horizontal Scroll) -->
+    <section id="gallery" class="py-24 bg-brand-slate border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 mb-8 flex justify-between items-end">
+            <div class="space-y-3">
+                <span class="text-brand-pink text-xs font-bold uppercase tracking-widest block">Collection</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold">春季衣裝精品</h2>
+                <p class="text-slate-400 text-sm">【提示】點擊任意衣裝卡片，即可開啟「高清放大與背景故事預覽」</p>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <button onclick="scrollLeftArea('gallery-scroll')" aria-label="向左捲動" class="w-10 h-10 rounded-full border border-white/10 hover:border-brand-pink text-slate-400 hover:text-brand-pink bg-white/5 transition flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollRightArea('gallery-scroll')" aria-label="向右捲動" class="w-10 h-10 rounded-full border border-white/10 hover:border-brand-pink text-slate-400 hover:text-brand-pink bg-white/5 transition flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 橫向拖曳滑動區 -->
+        <div id="gallery-scroll" class="drag-to-scroll flex gap-8 overflow-x-auto no-scrollbar py-6 px-[10vw] scroll-smooth">
+            
+            <!-- 衣裝 1 -->
+            <div onclick="openLightbox('Haruhikage Blue', '春日影經典蔚藍', '這款大衣靈感源於樂團命運交織的那一晚。採用防水防風的高級經典蔚藍風衣布料，搭配大器的雙排釦剪裁，穿上它，彷彿置身於迷失在光影中的春日，帥氣而又帶有一絲浪漫。', '衣裝/1.jpg', '#ffb7c5')" class="flex-shrink-0 w-80 bg-brand-charcoal rounded-2xl border border-white/10 p-5 cursor-pointer transition-all duration-300 hover:border-brand-pink hover:scale-105 hover:shadow-2xl">
+                <div class="relative w-full aspect-square bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none">
+                    <svg class="absolute w-28 h-28 text-sky-200/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- 風衣剪影 -->
+                        <path d="M30 20 L50 10 L70 20 L80 40 L65 42 L65 90 L35 90 L35 42 L20 40 Z" fill="currentColor" fill-opacity="0.3"/>
+                        <circle cx="50" cy="50" r="4" fill="currentColor"/>
+                        <circle cx="50" cy="62" r="4" fill="currentColor"/>
+                    </svg>
+                    <img src="衣裝/1.jpg" alt="春日影經典蔚藍" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                    <!-- 懸浮提示 -->
+                    <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                        <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大探索</span>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <h3 class="text-lg font-bold text-white group-hover:text-brand-pink">Haruhikage Blue</h3>
+                    <p class="text-brand-pink text-xs font-semibold">春日影經典蔚藍</p>
+                    <p class="text-slate-400 text-xs line-clamp-2 pt-1">
+                        靈感來自那夜的陽光。完美融合休閒與紳士質感，英倫學院風格的究極展現。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 衣裝 2 -->
+            <div onclick="openLightbox('Melancholic Tea Time', '迷跡茶會長洋裝', '這件精緻的米金色洛可可風蕾絲連衣裙，搭配了頂級雪紡拼接，象徵著古典貴族在午後品茗時的那抹優雅。適合在心碎卻仍保持禮貌的場合穿著。', '衣裝/2.jpg', '#d4af37')" class="flex-shrink-0 w-80 bg-brand-charcoal rounded-2xl border border-white/10 p-5 cursor-pointer transition-all duration-300 hover:border-brand-pink hover:scale-105 hover:shadow-2xl">
+                <div class="relative w-full aspect-square bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none">
+                    <svg class="absolute w-28 h-28 text-amber-200/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- 連身洋裝 -->
+                        <path d="M40 20 L60 20 L75 40 L60 45 L80 90 L20 90 L40 45 L25 40 Z" fill="currentColor" fill-opacity="0.3"/>
+                        <line x1="20" y1="90" x2="80" y2="90" stroke-width="4"/>
+                    </svg>
+                    <img src="衣裝/2.jpg" alt="迷跡茶會長洋裝" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                    <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                        <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大探索</span>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <h3 class="text-lg font-bold text-white">Melancholic Tea Time</h3>
+                    <p class="text-amber-300 text-xs font-semibold">迷跡茶會長洋裝</p>
+                    <p class="text-slate-400 text-xs line-clamp-2 pt-1">
+                        精緻細軟的米金色蕾絲與垂墜裙擺，帶有不妥協的高嶺之花高貴感。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 衣裝 3 -->
+            <div onclick="openLightbox('Nirvana Denim Jacket', '迷茫超脫丹寧夾克', '專為獨立音樂現場打造。整件夾克採用重度洗水與不修邊破壞感設計，背面帶有手工縫製的「迷子」刺繡字樣，彰顯獨特的龐克風骨。', '衣裝/3.jpg', '#a78bfa')" class="flex-shrink-0 w-80 bg-brand-charcoal rounded-2xl border border-white/10 p-5 cursor-pointer transition-all duration-300 hover:border-brand-pink hover:scale-105 hover:shadow-2xl">
+                <div class="relative w-full aspect-square bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none">
+                    <svg class="absolute w-28 h-28 text-purple-200/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- 丹寧夾克 -->
+                        <path d="M25 25 L75 25 L85 55 L70 55 L70 85 L30 85 L30 55 L15 55 Z" fill="currentColor" fill-opacity="0.3"/>
+                        <path d="M30 40 L50 25 L70 40" stroke-linecap="round"/>
+                    </svg>
+                    <img src="衣裝/3.jpg" alt="迷茫超脫丹寧夾克" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                    <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                        <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大探索</span>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <h3 class="text-lg font-bold text-white">Nirvana Denim Jacket</h3>
+                    <p class="text-purple-400 text-xs font-semibold">迷茫超脫丹寧夾克</p>
+                    <p class="text-slate-400 text-xs line-clamp-2 pt-1">
+                        重洗水重工破壞美學。叛逆與純真的極端碰撞，演出舞台上的绝对焦點。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 衣裝 4 -->
+            <div onclick="openLightbox('No Name Youth Cap', '無名青春貝雷帽與披風', '英倫復古羊毛呢料披風，附帶一頂經典不對稱設計的深灰色格子貝雷帽。極具文藝氣息與保暖度，讓人聯想到倫敦街頭下著微雨時的朦朧美感。', '衣裝/4.jpg', '#93c5fd')" class="flex-shrink-0 w-80 bg-brand-charcoal rounded-2xl border border-white/10 p-5 cursor-pointer transition-all duration-300 hover:border-brand-pink hover:scale-105 hover:shadow-2xl">
+                <div class="relative w-full aspect-square bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none">
+                    <svg class="absolute w-28 h-28 text-sky-200/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- 貝雷帽與披風 -->
+                        <path d="M15 60 C15 35, 85 35, 85 60 L70 85 L30 85 Z" fill="currentColor" fill-opacity="0.3"/>
+                        <ellipse cx="50" cy="30" rx="20" ry="10" fill="currentColor" fill-opacity="0.4"/>
+                    </svg>
+                    <img src="衣裝/4.jpg" alt="無名青春貝雷帽與披風" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                    <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                        <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大探索</span>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <h3 class="text-lg font-bold text-white">No Name Youth Cap</h3>
+                    <p class="text-sky-300 text-xs font-semibold">無名青春貝雷帽與披風</p>
+                    <p class="text-slate-400 text-xs line-clamp-2 pt-1">
+                        倫敦微雨中的優雅英倫風範。保暖、知性，並帶有一絲不露聲色的傲嬌感。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 衣裝 5 -->
+            <div onclick="openLightbox('Stray Cat Matcha Coat', '野貓抹茶大衣', '隨興慵懶的超大落肩毛呢外套，染上了治癒度滿分的抹茶淺綠。兜帽設計上貼心藏有立體貓耳廓形，保暖與高萌度兼具，適合說走就走的深夜漫步。', '衣裝/5.jpg', '#34d399')" class="flex-shrink-0 w-80 bg-brand-charcoal rounded-2xl border border-white/10 p-5 cursor-pointer transition-all duration-300 hover:border-brand-pink hover:scale-105 hover:shadow-2xl">
+                <div class="relative w-full aspect-square bg-neutral-900 rounded-xl overflow-hidden mb-4 flex items-center justify-center border border-white/5 select-none">
+                    <svg class="absolute w-28 h-28 text-emerald-200/20" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <!-- 貓耳大衣 -->
+                        <path d="M20 30 L80 30 L85 90 L15 90 Z" fill="currentColor" fill-opacity="0.3"/>
+                        <path d="M35 30 L40 15 L50 25 L60 15 L65 30"/>
+                    </svg>
+                    <img src="衣裝/5.jpg" alt="野貓抹茶大衣" class="absolute inset-0 w-full h-full object-cover z-10" onerror="this.style.display='none'">
+                    <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-[2px] opacity-0 hover:opacity-100 transition duration-300 z-20 flex items-center justify-center">
+                        <span class="bg-black/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-pink border border-brand-pink/30"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 點擊放大探索</span>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <h3 class="text-lg font-bold text-white">Stray Cat Matcha Coat</h3>
+                    <p class="text-emerald-400 text-xs font-semibold">野貓抹茶大衣</p>
+                    <p class="text-slate-400 text-xs line-clamp-2 pt-1">
+                        超寬鬆日系落肩剪裁。獨特的溫暖抹茶綠色調，點綴上令人會心一笑的貓耳細節。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 動態宣傳與外部連結區塊 (CTA / YouTube Link) -->
+    <section id="youtube" class="relative py-28 text-center px-6 overflow-hidden border-t border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-charcoal to-black z-0"></div>
+        <div class="absolute w-[250px] h-[250px] rounded-full bg-brand-hot/10 blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="relative z-10 max-w-2xl mx-auto space-y-8">
+            <span class="text-brand-pink font-semibold tracking-widest text-xs uppercase"><i class="fa-solid fa-play-circle mr-1"></i> Special Project Video</span>
+            <h2 class="font-serif text-3xl md:text-5xl font-black text-white">「迷子でもいい、迷子でも進め。」</h2>
+            <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                即使迷失，也要繼續演奏前進。快來與我們一起沉浸在 ANON TOKYO 夢幻店鋪主題曲與 MyGO!!!!! 扣人心弦的音樂錄影帶中！
+            </p>
+            <div class="pt-4">
+                <a href="https://www.youtube.com/watch?v=F3S7qG6mGrs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#ff0000] hover:bg-[#cc0000] text-white font-bold text-lg px-8 py-5 rounded-full shadow-2xl hover:scale-105 transition-all duration-300">
+                    <i class="fa-brands fa-youtube text-2xl"></i> 點此前往官方 YouTube 頻道欣賞
+                </a>
+            </div>
+            <p class="text-xs text-slate-500">連結將跳轉至 BanG Dream! MyGO!!!!! 主題曲特別影片</p>
+        </div>
+    </section>
+
+    <!-- 高清預覽燈箱模態視窗 (Lightbox Modal) -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-3xl transition">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-4xl w-full bg-brand-slate rounded-2xl border border-white/10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
+            
+            <!-- 燈箱圖片展示 (帶防破圖SVG) -->
+            <div class="relative aspect-square bg-neutral-900 flex items-center justify-center p-6 border-r border-white/5">
+                <div id="lightbox-svg-holder" class="absolute inset-0 flex items-center justify-center">
+                    <!-- 動態JS更換此處SVG結構或圖片 -->
+                    <svg class="w-40 h-40 text-brand-pink/10" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="25" y="25" width="50" height="50" rx="8"/>
+                    </svg>
+                </div>
+                <img id="lightbox-img" src="" alt="" class="absolute inset-0 w-full h-full object-contain z-10 p-4" onerror="this.style.display='none'; document.getElementById('lightbox-svg-holder').style.opacity='1';">
+            </div>
+
+            <!-- 燈箱詳細故事說明 -->
+            <div class="p-8 flex flex-col justify-between space-y-6">
+                <div class="space-y-4">
+                    <div class="space-y-1">
+                        <span id="lightbox-accent" class="text-brand-pink text-xs font-bold uppercase tracking-widest block">Collection Item</span>
+                        <h2 id="lightbox-title-en" class="font-serif text-3xl font-black text-white">Outfit Name</h2>
+                        <h3 id="lightbox-title-zh" class="text-brand-pink text-lg font-bold">中文名稱</h3>
+                    </div>
+                    <div class="h-[1px] w-full bg-white/10"></div>
+                    <p id="lightbox-desc" class="text-slate-300 text-sm leading-relaxed">
+                        這裡會顯示該衣服的詳細故事、材質特色，以及千早愛音與店員們在搭配這套衣服時的心情點滴。
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-xs text-slate-400">
+                        <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                        <span>支持電腦滑鼠拖曳、手機觸控雙端相容</span>
+                    </div>
+                    <button onclick="closeLightbox()" class="w-full py-3.5 bg-white/5 hover:bg-white/10 text-white rounded-xl font-bold transition">
+                        關閉預覽
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🛠️ 開發者自助指南工具箱 (Developer Toolbox Drawer) -->
+    <div id="dev-box" class="fixed bottom-0 right-0 z-40 max-w-md w-full bg-brand-slate border-l border-t border-brand-pink/20 rounded-tl-2xl shadow-2xl translate-y-full transition-transform duration-500 flex flex-col max-h-[80vh]">
+        <div class="p-4 bg-brand-charcoal flex justify-between items-center border-b border-white/10 rounded-tl-2xl">
+            <div class="flex items-center gap-2 text-brand-pink">
+                <i class="fa-solid fa-cubes-stacked"></i>
+                <span class="font-bold text-sm">🛠️ ANON TOKYO 擴充小秘書</span>
+            </div>
+            <button onclick="toggleBox()" class="text-slate-400 hover:text-white">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto space-y-6 text-xs leading-relaxed text-slate-300">
+            <p class="text-brand-pink font-semibold">恭喜您！這是您的第一個網站。以下為您準備好日後快速編輯、新增內容的黃金操作指南：</p>
+            
+            <div class="space-y-2">
+                <h4 class="font-bold text-white text-sm"><i class="fa-solid fa-image mr-1"></i> 第一步：放入您自己的實體圖片</h4>
+                <p>本網站內建「防破圖機制」。請在您的 GitHub 儲存庫（Repository）內，建立兩個資料夾：<code>店員</code> 與 <code>衣裝</code>（跟 <code>index.html</code> 同一層），並將圖片依照下方檔名放入對應資料夾：</p>
+                <p class="text-white font-semibold pt-1">📁 店員資料夾（放在 <code>店員/</code> 底下）：</p>
+                <ul class="list-disc pl-4 space-y-1 text-slate-400">
+                    <li>愛音照片：<code>店員/anon.jpg</code></li>
+                    <li>阿燈照片：<code>店員/tomori.jpg</code></li>
+                    <li>爽世照片：<code>店員/soyo.jpg</code></li>
+                    <li>立希照片：<code>店員/taki.jpg</code></li>
+                    <li>樂奈照片：<code>店員/raana.jpg</code></li>
+                </ul>
+                <p class="text-white font-semibold pt-1">📁 衣裝資料夾（放在 <code>衣裝/</code> 底下）：</p>
+                <ul class="list-disc pl-4 space-y-1 text-slate-400">
+                    <li>春日影經典蔚藍：<code>衣裝/1.jpg</code></li>
+                    <li>迷跡茶會長洋裝：<code>衣裝/2.jpg</code></li>
+                    <li>迷茫超脫丹寧夾克：<code>衣裝/3.jpg</code></li>
+                    <li>無名青春貝雷帽與披風：<code>衣裝/4.jpg</code></li>
+                    <li>野貓抹茶大衣：<code>衣裝/5.jpg</code></li>
+                </ul>
+                <p class="text-emerald-400">只要檔名與資料夾位置正確，圖片就會自動出現並替換掉預設的手繪插圖！店員照片現在也能點擊放大檢視囉！</p>
+            </div>
+
+            <div class="space-y-2 border-t border-white/5 pt-4">
+                <h4 class="font-bold text-white text-sm"><i class="fa-solid fa-copy mr-1"></i> 第二步：如何新增第 6 個成員？</h4>
+                <p>請打開 <code>index.html</code>，在檔案中搜尋 <code>&lt;!-- 店員 5: 要樂奈 --&gt;</code>。直接複製它整段 <code>&lt;div class="flex-shrink-0 w-80..."&gt; ... &lt;/div&gt;</code> 程式碼，貼在下方，並修改：</p>
+                <ul class="list-disc pl-4 space-y-1 text-slate-400">
+                    <li>把姓名改為您新成員的名字（總共有 3 處：照片放大彈窗的 <code>openLightbox(...)</code> 參數、卡片標題、卡片中的英文小字）</li>
+                    <li>把圖片路徑 <code>店員/raana.jpg</code> 改成新成員的圖片路徑，例如 <code>店員/新成員.jpg</code>（<code>openLightbox(...)</code> 裡與 <code>&lt;img src="..."&gt;</code> 裡都要改，記得圖片檔案要放進 <code>店員</code> 資料夾）</li>
+                    <li>修改其餘介紹文字即可！橫向拖曳排版會自動適應擴充，完全不用調 CSS！</li>
+                </ul>
+            </div>
+
+            <div class="space-y-2 border-t border-white/5 pt-4">
+                <h4 class="font-bold text-white text-sm"><i class="fa-solid fa-copy mr-1"></i> 第三步：如何新增更多衣服精品？（未來持續擴充用）</h4>
+                <p>請在代碼中搜尋 <code>&lt;!-- 衣裝 5 --&gt;</code>，同樣複製整段 <code>&lt;div onclick="openLightbox(...)" ...&gt; ... &lt;/div&gt;</code>，貼在下方。並依序修改：</p>
+                <ul class="list-disc pl-4 space-y-1 text-slate-400">
+                    <li>圖片路徑：把 <code>衣裝/5.jpg</code> 改成下一個編號，例如新增第 6 件就用 <code>衣裝/6.jpg</code>（<code>onclick</code> 參數與 <code>&lt;img src="..."&gt;</code> 兩處都要改）</li>
+                    <li>只要把對應編號的圖片檔案放進 <code>衣裝</code> 資料夾，就會自動顯示，之後要一直加 <code>衣裝/7.jpg</code>、<code>衣裝/8.jpg</code>...也是同樣方式，順序沒有限制</li>
+                </ul>
+                <div class="p-2 bg-black/40 rounded font-mono text-[10px] text-brand-pink select-all">
+                    openLightbox('英文名', '中文名', '詳細故事內容...', '衣裝/編號.jpg', '代表色HEX')
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <button onclick="toggleBox()" class="w-full py-2 bg-gradient-to-r from-brand-pink to-brand-hot text-brand-charcoal font-black rounded-lg hover:opacity-90 transition">
+                    我懂了！開始試用網站 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="py-12 bg-black text-center text-xs text-slate-500 border-t border-white/5">
+        <p class="font-serif tracking-widest text-brand-pink mb-2">ANON TOKYO - FAN COMMUNE</p>
+        <p>© 2026 ANON TOKYO Fan Website. Built for the Bandori MyGO!!!!! Community.</p>
+    </footer>
+
+    <!-- 交互式功能 JavaScript 腳本 -->
+    <script>
+        // 1. 拖拽捲動功能（相容於滑鼠左右拖曳）
+        function setupDragScroll(scrollId) {
+            const slider = document.getElementById(scrollId);
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+            
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+            
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 1.5; // 控制滑動敏感度
+                slider.scrollLeft = scrollLeft - walk;
+            });
+
+            // 支持手勢滑動（觸控螢幕原生支持更流暢）
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            }, { passive: true });
+        }
+
+        // 啟動兩個橫向滑動容器的拖拽功能
+        setupDragScroll('staff-scroll');
+        setupDragScroll('gallery-scroll');
+
+        // 2. 左右點擊控制按鈕
+        function scrollLeftArea(scrollId) {
+            const el = document.getElementById(scrollId);
+            el.scrollBy({ left: -320, behavior: 'smooth' });
+        }
+        function scrollRightArea(scrollId) {
+            const el = document.getElementById(scrollId);
+            el.scrollBy({ left: 320, behavior: 'smooth' });
+        }
+
+        // 3. 高清放大預覽燈箱（Lightbox）邏輯（店員與衣裝共用）
+        function openLightbox(titleEn, titleZh, desc, imgSrc, accentColor) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const textEn = document.getElementById('lightbox-title-en');
+            const textZh = document.getElementById('lightbox-title-zh');
+            const textDesc = document.getElementById('lightbox-desc');
+            const accent = document.getElementById('lightbox-accent');
+            const svgHolder = document.getElementById('lightbox-svg-holder');
+
+            // 設定內容
+            textEn.innerText = titleEn;
+            textZh.innerText = titleZh;
+            textDesc.innerText = desc;
+            accent.style.color = accentColor;
+            img.src = imgSrc;
+            
+            // 重置防破圖狀態
+            img.style.display = 'block';
+            svgHolder.style.opacity = '0'; // 預設隱藏底層SVG圖標，加載失敗時 onerror 會將其顯示
+
+            // 特殊SVG客製化：即使沒圖片，Lightbox也能看得到專屬特色SVG
+            svgHolder.innerHTML = `
+                <svg class="w-32 h-32 animate-pulse" style="color: ${accentColor}33" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="20" y="20" width="60" height="60" rx="10" fill="currentColor" fill-opacity="0.1"/>
+                    <path d="M35 50 Q50 25 65 50 T95 50" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="15" fill="currentColor" fill-opacity="0.2"/>
+                </svg>
+            `;
+
+            // 開啟過渡動畫
+            lightbox.classList.remove('pointer-events-none', 'opacity-0');
+            lightbox.classList.add('opacity-100');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0', 'pointer-events-none');
+            lightbox.classList.remove('opacity-100');
+        }
+
+        // 4. 右下角開發者工具箱開關
+        function toggleBox() {
+            const box = document.getElementById('dev-box');
+            if (box.classList.contains('translate-y-full')) {
+                box.classList.remove('translate-y-full');
+            } else {
+                box.classList.add('translate-y-full');
+            }
+        }
+    </script>
+</body>
+</html>
